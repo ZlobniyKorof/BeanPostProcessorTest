@@ -11,10 +11,10 @@ import javax.annotation.PreDestroy;
  * @author Artem_Agafonov
  */
 @Component
-public class SomeBean implements TestBeans{
+public class SimpleBean implements TestBeans {
 
-    public SomeBean(){
-        System.out.println("SomeBean constructor. message: "+ message);
+    public SimpleBean() {
+        System.out.println("SimpleBean constructor. message: " + message);
     }
 
     private String message;
@@ -29,11 +29,11 @@ public class SomeBean implements TestBeans{
 
     @PostConstruct
     public void init() {
-        System.out.println("SomeBean is in init phase. message: "+ message);
+        System.out.println("SimpleBean init(). message: " + message);
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("SomeBean will be destroyed now. message: "+ message);
+        System.out.println("SimpleBean destroy(). message: " + message);
     }
 }

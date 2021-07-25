@@ -15,38 +15,35 @@ import javax.annotation.PreDestroy;
 public class ThirdBean implements TestBeans {
 
     @Autowired
-    private SomeBean someBean;
+    private SimpleBean simpleBean;
 
     public ThirdBean() {
-        System.out.println("ThirdBean constructor. message: " + message);
-        System.out.println("ThirdBean constructor." + getSomeBeanText());
+        System.out.println("ThirdBean constructor. message: " + message + getSimpleBeanText());
     }
 
     private String message;
 
     public String getMessage() {
-        return "Message: " + message;
+        return "Message: " + message + getSimpleBeanText();
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    private String getSomeBeanText() {
-        return (someBean == null)
-                ? "someBean not setted"
-                : "someBean setted. SomeBean message: " + someBean.getMessage();
+    private String getSimpleBeanText() {
+        return (simpleBean == null)
+                ? ". ThirdBean. simpleBean not setted"
+                : ". ThirdBean. simpleBean setted. SomeBean message: " + simpleBean.getMessage();
     }
 
     @PostConstruct
     public void init() {
-        System.out.println("ThirdBean is in init phase. message: " + message);
-        System.out.println("ThirdBean init()." + getSomeBeanText());
+        System.out.println("ThirdBean init(). message: " + message + getSimpleBeanText());
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("ThirdBean will be destroyed now. message: " + message);
-        System.out.println("ThirdBean destroy()." + getSomeBeanText());
+        System.out.println("ThirdBean destroy(). message: " + message + getSimpleBeanText());
     }
 }

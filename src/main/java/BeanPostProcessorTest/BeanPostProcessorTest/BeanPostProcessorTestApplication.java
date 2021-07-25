@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BeanPostProcessorTestApplication {
 
 	public static void main(String[] args) {
-		System.out.println("main method first of all");
+		System.out.println("Main method start");
 		SpringApplication.run(BeanPostProcessorTestApplication.class, args);
+		System.out.println("Main method end");
 	}
 }

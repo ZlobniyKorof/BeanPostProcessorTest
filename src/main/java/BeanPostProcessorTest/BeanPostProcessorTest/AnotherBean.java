@@ -11,31 +11,42 @@ import javax.annotation.PreDestroy;
  * @author Artem_Agafonov
  */
 @Component
-public class AnotherBean implements TestBeans{
+public class AnotherBean implements TestBeans {
 
-    public AnotherBean(SomeBean someBean){
-        System.out.println("AnotherBean constructor. with someBean");
-        someBean.setMessage("Message setted to SomeBean from Another bean Constructor");
+    SimpleBean simpleBean;
+
+    public AnotherBean(SimpleBean simpleBean) {
+        this.simpleBean = simpleBean;
+        System.out.println("AnotherBean constructor. with someBean" + getSimpleBeanText());
+        simpleBean.setMessage("Message setted to SomeBean from Another bean Constructor");
         setMessage("Message from AnotherBean constructor");
     }
 
     private String message;
 
     public String getMessage() {
-        return "AnotherBean Message: " + message;
+        return "AnotherBean Message: " + message + getSimpleBeanText();
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
+    private String getSimpleBeanText() {
+        return (simpleBean == null)
+                ? ". AnotherBean. someBean not setted"
+                : ". AnotherBean. someBean setted. SomeBean message: " + simpleBean.getMessage();
+    }
+
     @PostConstruct
     public void init() {
-        System.out.println("AnotherBean is in init phase. message: "+ message);
+        System.out.println("AnotherBean init(). message: " + message + getSimpleBeanText());
+        setMessage("Message from AnotherBean init()");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("AnotherBean will be destroyed now message: "+ message);
+        System.out.println("AnotherBean destroy(). message: " + message + getSimpleBeanText());
+        setMessage("Message from AnotherBean destroy()");
     }
 }
