@@ -1,5 +1,7 @@
 package BeanPostProcessorTest.BeanPostProcessorTest;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,7 @@ import javax.annotation.PreDestroy;
  * @author Artem_Agafonov
  */
 @Component
-public class SimpleBean implements TestBeans {
+public class SimpleBean implements TestBeans, InitializingBean, DisposableBean {
 
     @Autowired
     private AnotherBean anotherBean;
@@ -43,7 +45,18 @@ public class SimpleBean implements TestBeans {
     }
 
     @PreDestroy
-    public void destroy() {
+    public void preDestroy() {
+        System.out.println("SimpleBean preDestroy(). message: " + message + getSimpleBeanText());
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("SimpleBean afterPropertiesSet(). message: " + message + getSimpleBeanText());
+    }
+
+    @Override
+    public void destroy() throws Exception {
         System.out.println("SimpleBean destroy(). message: " + message + getSimpleBeanText());
+
     }
 }

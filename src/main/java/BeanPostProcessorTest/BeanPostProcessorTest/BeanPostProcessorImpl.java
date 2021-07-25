@@ -21,8 +21,7 @@ public class BeanPostProcessorImpl implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (beanNames.contains(beanName)) {
             TestBeans testBean = (TestBeans) bean;
-            System.out.println("postProcessBeforeInitialization method called for: "
-                    + beanName.toUpperCase() + ". current setted message: " + testBean.getMessage());
+            System.out.println(beanName.toUpperCase() + " postProcessBeforeInitialization method. current setted message: " + testBean.getMessage());
             testBean.setMessage(beanName.toUpperCase() + ". Message setted from postProcessBeforeInitialization");
         }
         return bean;
@@ -32,8 +31,7 @@ public class BeanPostProcessorImpl implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (beanNames.contains(beanName)) {
             TestBeans testBean = (TestBeans) bean;
-            System.out.println("postProcessAfterInitialization method called for: "
-                    + beanName.toUpperCase() + ". current setted message: " + testBean.getMessage());
+            System.out.println(beanName.toUpperCase() + " postProcessAfterInitialization method. current setted message: " + testBean.getMessage());
             testBean.setMessage(beanName.toUpperCase() + ". Message setted from postProcessAfterInitialization");
             System.out.println();
         }
