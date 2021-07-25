@@ -18,7 +18,7 @@ public class AnotherBean implements TestBeans {
     SimpleBean simpleBean;
 
     public AnotherBean() {
-        System.out.println("AnotherBean constructor." + getSimpleBeanText());
+        System.out.println("AnotherBean constructor. message: " + message + getSimpleBeanText());
         if (simpleBean != null) {
             simpleBean.setMessage("Message setted to SimpleBean from Another bean Constructor");
         }
@@ -28,7 +28,7 @@ public class AnotherBean implements TestBeans {
     private String message;
 
     public String getMessage() {
-        return "AnotherBean Message: " + message + getSimpleBeanText();
+        return "AnotherBean Message: " + message + ((simpleBean == null) ? " simplebean - null" : " simpleBean filled");
     }
 
     public void setMessage(String message) {

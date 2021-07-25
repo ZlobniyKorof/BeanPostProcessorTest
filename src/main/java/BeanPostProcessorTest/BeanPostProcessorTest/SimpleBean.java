@@ -18,13 +18,13 @@ public class SimpleBean implements TestBeans {
     private AnotherBean anotherBean;
 
     public SimpleBean() {
-        System.out.println("SimpleBean constructor. message: " + message);
+        System.out.println("SimpleBean constructor. message: " + message + getSimpleBeanText());
     }
 
     private String message;
 
     public String getMessage() {
-        return "Message: " + message + getSimpleBeanText();
+        return "Message: " + message + ((anotherBean == null) ? " anotherBean - null" : " anotherBean filled");
     }
 
     public void setMessage(String message) {
