@@ -1,5 +1,6 @@
 package BeanPostProcessorTest.BeanPostProcessorTest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,12 +14,14 @@ import javax.annotation.PreDestroy;
 @Component
 public class AnotherBean implements TestBeans {
 
+    @Autowired
     SimpleBean simpleBean;
 
-    public AnotherBean(SimpleBean simpleBean) {
-        this.simpleBean = simpleBean;
-        System.out.println("AnotherBean constructor. with someBean" + getSimpleBeanText());
-        simpleBean.setMessage("Message setted to SimpleBean from Another bean Constructor");
+    public AnotherBean() {
+        System.out.println("AnotherBean constructor." + getSimpleBeanText());
+        if (simpleBean != null) {
+            simpleBean.setMessage("Message setted to SimpleBean from Another bean Constructor");
+        }
         setMessage("Message from AnotherBean constructor");
     }
 
