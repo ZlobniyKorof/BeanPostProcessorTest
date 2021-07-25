@@ -18,7 +18,7 @@ public class AnotherBean implements TestBeans {
     public AnotherBean(SimpleBean simpleBean) {
         this.simpleBean = simpleBean;
         System.out.println("AnotherBean constructor. with someBean" + getSimpleBeanText());
-        simpleBean.setMessage("Message setted to SomeBean from Another bean Constructor");
+        simpleBean.setMessage("Message setted to SimpleBean from Another bean Constructor");
         setMessage("Message from AnotherBean constructor");
     }
 
@@ -34,8 +34,8 @@ public class AnotherBean implements TestBeans {
 
     private String getSimpleBeanText() {
         return (simpleBean == null)
-                ? ". AnotherBean. someBean not setted"
-                : ". AnotherBean. someBean setted. SomeBean message: " + simpleBean.getMessage();
+                ? ". AnotherBean. simpleBean not setted"
+                : ". AnotherBean. simpleBean setted. simpleBean message: " + simpleBean.getMessage();
     }
 
     @PostConstruct

@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class BeanPostProcessorImpl implements BeanPostProcessor {
 
-    List<String> beanNames = Arrays.asList("simpleBean", "anotherBean", "thirdBean");
+    List<String> beanNames = Arrays.asList("simpleBean", "anotherBean");
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

@@ -13,7 +13,10 @@ import javax.annotation.PreDestroy;
 @Component
 public class SimpleBean implements TestBeans {
 
-    public SimpleBean() {
+    private AnotherBean anotherBean;
+
+    public SimpleBean(AnotherBean anotherBean) {
+        this.anotherBean = anotherBean;
         System.out.println("SimpleBean constructor. message: " + message);
     }
 
@@ -25,6 +28,12 @@ public class SimpleBean implements TestBeans {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    private String getSimpleBeanText() {
+        return (anotherBean == null)
+                ? ". SimpleBean. anotherBean not setted"
+                : ". SimpleBean. anotherBean setted. anotherBean message: " + anotherBean.getMessage();
     }
 
     @PostConstruct
